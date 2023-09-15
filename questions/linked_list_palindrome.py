@@ -48,5 +48,21 @@ class ListNode:
 
 
 def is_palindrome(head: ListNode) -> bool:
-    # TODO: Implement the function
-    return False
+    temp = head
+    stack = []
+ 
+    judgement = True
+    while temp != None:
+        stack.append(temp.value)
+        temp = temp.next
+ 
+    while head != None:
+        i = stack.pop()
+        if head.value == i:
+            judgement = True
+        else:
+            judgement = False
+            break
+        head = head.next
+ 
+    return judgement
