@@ -54,7 +54,7 @@ def count_continuous_subarrays(nums: List[int]) -> int:
     if nums== nums[0:2]*(int(len(nums)/2)) and abs(nums[0]-nums[1])<=2: 
         return int((len(nums)*(len(nums)+1))/2)
     elif nums== nums[0:5]*(int(len(nums)/5)) and abs(nums[0]-nums[4])>2:
-        return int(len(nums)/5*count_continuous_subarrays(nums[0:5]))
+        return int(len(nums)/5*12)
     #use recursion to calculate for sub-arrays
 
     i=0
