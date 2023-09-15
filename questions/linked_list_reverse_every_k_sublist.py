@@ -52,5 +52,25 @@ class ListNode:
 
 
 def reverse_every_k_elements(head: ListNode, k: int) -> ListNode:
-    # TODO: Implement the function
-    return None
+    if head == None:
+            return None
+        member = head
+        pred = None
+        succ = None
+        i = 0
+  
+        # Reverse first k nodes of the linked list
+        while member and i < k:
+            succ = member.next
+            member.next = pred 
+            pred  = member
+            member = succ
+            i += 1
+  
+       
+        if succ is not None:
+            head.next = reverse_every_k_elements(succ, k)
+  
+        # prev is new head of the input list
+        return pred
+  
