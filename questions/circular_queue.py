@@ -64,22 +64,61 @@ Tags:
 class MyCircularQueue:
 
     def __init__(self, k: int):
-        pass
+        self.length = k
+        self.queue = [0]*5
+        self.front = self.rear = -1
+    
+    
     
     def Front(self) -> int:
-        pass
+        if (self.front == -1):
+            return self.front
+        else:
+            return self.queue[self.front]
     
     def Rear(self) -> int:
-        pass
+        if (self.front == -1):
+            return self.front
+        else:
+            return self.queue[self.rear]
+        
     
     def enQueue(self, value: int) -> bool:
-        pass
+        #disclaimer:I learnt about the divide by length of the array trick from stack exchange explaining how to create circular lists
+        if ((self.rear + 1) % self.length == self.front):
+            return False
+            
+        elif (self.front == -1):
+            self.front = 0
+            self.rear = 0
+            self.queue[self.rear] = value
+            return True
+        else:
+            self.rear = (self.rear + 1) % self.length
+            self.queue[self.rear] = value
+            return True
     
     def deQueue(self) -> bool:
-        pass
+        if (self.front == -1): 
+            return False
+        elif (self.front == self.rear):
+            
+            self.front = -1
+            self.rear = -1
+            return True
+        else:
+            self.front = (self.front + 1) % self.length
+            return True
+            
     
     def isEmpty(self) -> bool:
-        pass
+        if (self.front == -1):
+            return True
+        else:
+            return False
     
     def isFull(self) -> bool:
-        pass
+        if ((self.rear + 1) % self.length == self.front):
+            return True
+        else:
+            return False
