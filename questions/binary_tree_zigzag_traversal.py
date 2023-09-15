@@ -56,10 +56,47 @@ class TreeNode:
         self.right = right
 
 def zigzag_level_order_traversal(root: TreeNode) -> List[List[int]]:
-    if not root:
+    if root is None:
         return []
+
+    nodes = []
+    heir = []
+
+    flag=0
+ 
+    nodes.append(root)
+
+    list2=[[root.value]]
     
-    # TODO: Implement the BFS algorithm with zigzag order to populate the result list
-    result = []
-    # ...
-    return result
+   
+    while len( nodes) > 0:
+
+       
+        temp =  nodes.pop()
+
+ 
+        if flag==1:
+            if temp.left:
+                heir.append(temp.left)
+            if temp.right:
+                heir.append(temp.right)
+                
+        else:
+            if temp.right:
+                
+                heir.append(temp.right)
+            if temp.left:
+                heir.append(temp.left)
+ 
+        if len(nodes) == 0:
+            flag=(flag+1)%2
+            list3=[]
+            for i in range(len(heir)):
+                    list3.append(heir[i].value)
+            
+        
+            list2.append(list3)
+            nodes, heir = heir,  nodes
+        
+        
+    return list2[:len(list2)-1]
