@@ -48,4 +48,21 @@ Tags:
 """
 
 def validate_expression(s: str) -> bool:
-    return False
+    opening_parentheses = set('([{') ## ) }] <- closing
+    closing= set(')]}')
+    matching_pairs = set([ ('(',')'), ('[',']'), ('{','}') ])
+    stack = []
+    acceptable_expressions=["=","+","*","-","/","%",'(',')', '[',']', '{','}','1','2','3','4','5','6','7','8','9','0']
+    for e in s:
+        if e not in acceptable_expressions:
+            return False
+        if e in closing and len(stack)==0:
+            return False
+        else:
+            if e in opening_parentheses:
+                stack.append(e) 
+            if e in closing:
+                last=stack.pop()
+                if (last, e) not in matching_pairs:
+                    return False
+    return len(stack)==0
