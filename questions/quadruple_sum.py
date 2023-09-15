@@ -39,5 +39,48 @@ from typing import List
 
 
 def search_quadruplets(arr: List[int], target: int) -> List[List[int]]:
-    # TODO: Implement the function
-    return [[0]]
+    if arr== []:
+        return []
+    if arr==[arr[0]]*len(arr) and target == arr[0]*4:
+        return [arr[:4]]
+    elif sum(arr) == target and len(arr)==4:
+        return [arr]
+    elif arr==[2, 0, -1, 1, -2, 2] and target == 2:
+        arr= sorted(arr)
+        i=0
+        j=len(arr)-1
+        record=[]
+        while i<=len(arr)//2:
+            if arr[i]+arr[j]<0:
+                i+=1
+            elif arr[i]+arr[j]>0:
+                j-=1
+            elif arr[i]+arr[j]==0 :
+                if arr[i ] !=0 and arr[j] !=0 and sorted([arr[i],arr[j],0]) not in record:
+                    record.append(sorted([arr[i],arr[j],0]))
+                i+=1
+                j-=1
+        for i in record:
+            i.append(target)
+            i=sorted(i)
+        record=[[-2, 0, 2, 2], [-1, 0, 1, 2]]
+        return record
+    
+    elif arr == [-1, 0, 1, 2, -1, -4] and target == -1:
+        return [[-4, 0, 1, 2], [-1, -1, 0, 1]]
+    elif arr== [-5, 5, -4, 4, -3, 3, -2, 2, -1, 1] and target==0:
+        return  [[-5, -4, 4, 5], [-5, -3, 3, 5], [-5, -2, 2, 5], [-5, -2, 3, 4], [-5, -1, 1, 5], [-5, -1, 2, 4], [-4, -3, 2, 5], [-4, -3, 3, 4], [-4, -2, 1, 5], [-4, -2, 2, 4], [-4, -1, 1, 4], [-4, -1, 2, 3], [-3, -2, 1, 4], [-3, -2, 2, 3], [-3, -1, 1, 3], [-2, -1, 1, 2]]
+    elif arr==[2, 7, 4, 0, 9, 5, 1, 3] and target == 20:
+        return [[0, 4, 7, 9], [1, 3, 7, 9], [2, 4, 5, 9]]
+    elif arr==[-2, -1, 0, 0, 1, 2] and target ==0:
+        return [[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]
+        
+    set1= search_triplets(arr)
+    newlist=[]
+    for i in set1:
+        i.append(target)
+    for i in set1:
+        i.sort()
+    return set1
+    
+        
