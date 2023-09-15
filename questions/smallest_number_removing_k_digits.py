@@ -39,5 +39,25 @@ Tags:
 
 
 def remove_k_digits(num: str, k: int) -> str:
-    # TODO: Implement the removeKDigits function
-    return ""
+    i=0
+    
+    limit=k
+    while i <len(num)-1 and limit>0:
+        if int(num[i])>int(num[i+1]) :
+        #rmb syntax= replace does not actually create new string without a def
+            num=num.replace(num[i], "",1)
+            #must specify default number to replacae
+            limit-=1
+            i=-1
+            #set it to -1 so our overall increment so we can use the i+=1 at the end to tap into index 0
+        elif num=="".join(sorted(num)):
+            num=num.replace(max(num), "",1)
+            limit-=1
+            i=-1
+
+        i+=1
+    return str(int(num))
+
+
+
+
