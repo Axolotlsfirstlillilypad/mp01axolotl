@@ -46,6 +46,21 @@ class ListNode:
         self.next = next
 
 def has_cycle(head: ListNode) -> bool:
-    # TODO: Implement the function
+    
+    i=head
+    j=head
+    while j.next != None :
+        if j.next.next!=None:
+            i=i.next
+            j=j.next
+            j=j.next
+            if i.value==j.value:
+                return True
+                break
+        if j.next is not None and j.next.next is None:
+            if j.value != i.value:
+                return False
+        
+        
     return False
 
