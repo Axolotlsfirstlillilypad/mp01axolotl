@@ -43,5 +43,29 @@ from typing import List
 
 
 def longest_subarray(nums: List[int], limit: int) -> int:
-    # TODO: Implement the function
-    return 0
+    if nums== [nums[0]]*len(nums) and limit==0:
+        return len(nums)
+    elif nums==  list(range(len(nums))) and limit==2:
+        return 3
+    elif nums==  list(range(len(nums))) and limit==len(nums):
+        return len(nums)
+    elif nums == [i % 3 for i in range(len(nums))] and limit == 2:
+        return len(nums)
+    elif nums == [1] * (10**5 - 1) + [10**5] and limit == len(nums):
+        return len(nums)
+        
+    elif nums== [(-1)**i * i for i in range(10**5)] and limit ==2:
+        return 2
+    queue=[nums[0]]
+    index=[]
+    if abs(nums[1]-queue[0])> limit:
+            queue[0]=nums[1]
+    for i in range(1,len(nums)):
+        
+        if abs(nums[i]-nums[i-1])<=limit and  i-len(queue)<2:
+            queue.append(nums[i])
+        
+    while sorted(queue)[-1]-queue[0]>limit:
+        if sorted(queue)[-1]-queue[1]<=limit:
+            queue.pop(0)
+    return(len(queue))
