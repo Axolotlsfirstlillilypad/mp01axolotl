@@ -42,5 +42,20 @@ Tags:
 from typing import List
 
 def days_to_wait_for_warmer(temperatures: List[int]) -> List[int]:
-    # TODO: Implement the function
-    return [0]
+    
+        n = len(temperatures)
+        wait = [0] * n
+        closest_gt = [n-1]
+        for i in range(n-2, -1, -1):
+            if temperatures[i+1] > temperatures[i]:
+                wait[i] = 1
+            else:
+                while closest_gt:
+                    j = closest_gt[-1]
+                    if temperatures[j] > temperatures[i]:
+                        wait[i] = j - i
+                        break
+                    else:
+                        closest_gt.pop()
+            closest_gt.append(i)
+        return wait
