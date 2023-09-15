@@ -43,5 +43,19 @@ Tags:
 from typing import List
 
 def sort_array(arr: List[int]) -> None:
-    # TODO: Implement the function
-    return None
+    l = 0
+    r = len(arr) - 1
+ 
+
+    i = 0
+    while i <= r:
+        if arr[i] == 0:
+            arr[l], arr[i] = arr[i], arr[l]
+            l += 1
+            i += 1
+        elif arr[i] == 2:
+            arr[i], arr[r] = arr[r], arr[i]
+            r -= 1
+        else:
+            i += 1
+    return arr
