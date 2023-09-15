@@ -45,5 +45,15 @@ from typing import List
 
 
 def two_sum(arr: List[int], target: int) -> List[int]:
-    # TODO: Implement the function
-    return [0]
+   i = 0
+    j = len(arr) - 1
+    result=[]
+    while i < j:
+        if arr[i] + arr[j] == target:
+            return[i,j]
+        elif arr[i] + arr[j] < target:
+            i += 1
+        else:
+            j -= 1
+ 
+    return []
