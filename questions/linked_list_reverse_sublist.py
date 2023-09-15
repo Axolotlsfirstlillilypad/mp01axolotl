@@ -49,5 +49,52 @@ class ListNode:
 
 
 def reverse_sublist(head: ListNode, p: int, q: int) -> ListNode:
-    # TODO: Implement the function
-    return None
+    if (p == q):
+        return head
+    if p==1:
+        pred=None
+    i=1
+    member=head
+    while(member and i<q+1):
+        if i<p:
+            pred=member
+            
+        elif i == p:
+            start=member
+        elif i==q:
+            end=member
+            succ=member.next
+    
+        member=member.next
+        i+=1
+    
+    
+    
+    end.next=None
+    prec = None
+    
+    curr = start
+   
+    while (curr):
+        temp = curr.next
+        curr.next = prec
+        #copy error
+        prec = curr
+        curr = temp
+        
+    #BRACKET
+    if pred:
+        pred.next = end
+   
+    # If starting position was head
+    else:
+        head = end
+   
+    start.next = succ
+    member=head
+
+    return head
+        
+    
+    
+    
