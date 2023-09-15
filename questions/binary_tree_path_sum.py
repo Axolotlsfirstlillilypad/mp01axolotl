@@ -62,7 +62,22 @@ class TreeNode:
 
 def has_path_sum(root: TreeNode, sum: int) -> bool:
     if not root:
-        return  # TODO
+        return False
+    nodes = [root]
+    sums = [root.value]
+    while nodes:
+        node = nodes.pop()
+        value = sums.pop()
+        if not node.left and not node.right:
+            if value == sum:
+                return True
+        if node.left:
+            nodes.append(node.left)
+            sums.append(value + node.left.value)
+        if node.right:
+            nodes.append(node.right)
+            sums.append(value + node.right.value)
+    return False
 
     # TODO Implement me
 
