@@ -40,5 +40,20 @@ Tags:
 
 
 def remove_adjacent_dups(s: str) -> str:
-    # TODO: Implement the function
-    return ""
+    stack=[' ']
+    i=0
+    while i < len(s):
+        if s[i] == stack[-1]:
+            
+            stack =stack[:-1]
+            s=s.replace(s[i],"",2)
+            i-=1
+            
+           
+        else:
+            stack.append(s[i])
+            i+=1
+            
+        
+    
+    return s
