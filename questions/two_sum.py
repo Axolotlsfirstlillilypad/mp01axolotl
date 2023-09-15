@@ -45,7 +45,8 @@ from typing import List
 
 
 def two_sum(arr: List[int], target: int) -> List[int]:
-   i = 0
+    
+    i = 0
     j = len(arr) - 1
     result=[]
     while i < j:
