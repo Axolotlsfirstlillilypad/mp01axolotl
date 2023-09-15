@@ -32,5 +32,17 @@ from typing import List
 
 
 def maxWidthRamp(nums: List[int]) -> int:
-    # TODO: Implement the function
+    i = 0
+ 
+    
+    j = len(nums) - 1
+    
+    while i < j:
+        # If we find a pair
+        if nums[i] > nums[j]:
+            i+=1
+
+        else:
+            return j-i
     return 0
+ 
