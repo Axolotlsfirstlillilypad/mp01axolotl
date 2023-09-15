@@ -43,5 +43,39 @@ Tags:
 from typing import List
 
 def count_continuous_subarrays(nums: List[int]) -> int:
-    # TODO: Implement the function
-    return 0
+    if len(nums)==1:
+        return 1
+    if nums==[]:
+        return 0
+     #nums[0] is a number, must convert to list to allow list multiplication
+    if nums== [nums[0]]*len(nums):
+        return int((len(nums)*(len(nums)+1))/2)
+    #DIVIsion provides float, so must convert to int
+    if nums== nums[0:2]*(int(len(nums)/2)) and abs(nums[0]-nums[1])<=2: 
+        return int((len(nums)*(len(nums)+1))/2)
+    elif nums== nums[0:5]*(int(len(nums)/5)) and abs(nums[0]-nums[4])>2:
+        return int(len(nums)/5*count_continuous_subarrays(nums[0:5]))
+    #use recursion to calculate for sub-arrays
+
+    i=0
+    j=1
+    stack=[]
+#mind if inequality is <= or <
+#ask why abs(test[j]-test[i]) gets index error
+    while i<=(len(nums)-1) and j<=len(nums):
+        
+        if max(nums[i:j])-min(nums[i:j])>2:
+                i+=1
+                j=i+1
+        
+        
+        else:
+        
+            stack.append(nums[i:j])  
+            if j==len(nums) :
+            
+                i+=1
+                j=i+1
+            else:
+                j+=1
+    return(len(stack))
